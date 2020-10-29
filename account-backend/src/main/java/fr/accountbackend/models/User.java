@@ -1,6 +1,9 @@
 package fr.accountbackend.models;
 
 import org.hibernate.annotations.NaturalId;
+
+import fr.accountbackend.models.audit.DateAudit;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
