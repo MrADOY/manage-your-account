@@ -3,18 +3,22 @@ package fr.accountbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import fr.accountbackend.config.security.CurrentUser;
 import fr.accountbackend.config.security.JwtTokenProvider;
+import fr.accountbackend.config.security.UserPrincipal;
 import fr.accountbackend.exception.AppException;
 import fr.accountbackend.models.Role;
 import fr.accountbackend.models.RoleName;
@@ -23,6 +27,7 @@ import fr.accountbackend.odt.ApiResponseOdt;
 import fr.accountbackend.odt.JwtAuthenticationResponseOdt;
 import fr.accountbackend.odt.LoginOdt;
 import fr.accountbackend.odt.SignUpOdt;
+import fr.accountbackend.odt.UserSummaryOdt;
 import fr.accountbackend.repository.RoleRepository;
 import fr.accountbackend.repository.UserRepository;
 
@@ -48,6 +53,18 @@ public class AuthController {
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @GetMapping("/user/me")
+    @PreAuthorize("hasRole('USER')")
+    public UserSummaryOdt getCurrentUser(@CurrentUser UserPrincipal currentUser) {
+        UserSummaryOdt userSummary = new UserSummaryOdt(
+        currentUser.getId(), 
+        currentUser.getUsername(), 
+        currentUser.getName(),
+        currentUser.getEmail());
+        return userSummary;
+    }
+    
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginOdt loginRequest) {
