@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { LoginOdt } from './../models/LoginOdt';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { JwtAuthenticationResponseOdt } from '../models/JwtAuthenticationResponseOdt';
 import { SignUpOdt } from '../models/SignUpOdt';
 import { tap } from 'rxjs/operators';
@@ -53,5 +53,4 @@ export class AuthService {
       localStorage.removeItem('currentUser');
       this.router.navigate(['/login']);
   }
-
 }

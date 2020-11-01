@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="showProgressBar" mode="query"></mat-progress-bar>
 <div class="container">
   <form [formGroup]="profileForm" (ngSubmit)="valider()">
     <div>
@@ -6,10 +7,13 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input type="text" matInput placeholder="Username" formControlName="name">
+        <input type="text" matInput placeholder="Name" formControlName="name">
         <mat-icon matSuffix>emoji_people</mat-icon>
-        <mat-hint *ngIf="profileForm.controls.name.touched &&
-          profileForm.controls.name.errors?.required">Name is mandatory</mat-hint>
+        <mat-error *ngIf="profileForm.controls.name.touched &&
+          profileForm.controls.name.errors?.required">Name is mandatory</mat-error>
+        <mat-error *ngIf="profileForm.controls.name.touched &&
+          !profileForm.controls.name.errors?.required &&
+          !profileForm.controls.name.errors?.valid">Name is not valid</mat-error>
       </mat-form-field>
     </div>
     <div>
@@ -17,26 +21,35 @@
         <mat-label>Username</mat-label>
         <input type="text" matInput placeholder="Username" formControlName="username">
         <mat-icon matSuffix>assignment_ind</mat-icon>
-        <mat-hint *ngIf="profileForm.controls.username.touched &&
-          profileForm.controls.username.errors?.required">Username is mandatory</mat-hint>
+        <mat-error *ngIf="profileForm.controls.username.touched &&
+          profileForm.controls.username.errors?.required">Username is mandatory</mat-error>
+        <mat-error *ngIf="profileForm.controls.username.touched &&
+          !profileForm.controls.username.errors?.required &&
+          !profileForm.controls.username.errors?.valid">Username is not valid</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="text" matInput placeholder="Username" formControlName="email">
+        <input type="text" matInput placeholder="Email" formControlName="email">
         <mat-icon matSuffix>email</mat-icon>
-        <mat-hint *ngIf="profileForm.controls.email.touched &&
-          profileForm.controls.email.errors?.required">Username is mandatory</mat-hint>
+        <mat-error *ngIf="profileForm.controls.email.touched &&
+          profileForm.controls.email.errors?.required">Email is mandatory</mat-error>
+        <mat-error *ngIf="profileForm.controls.email.touched &&
+          !profileForm.controls.email.errors?.required &&
+          !profileForm.controls.email.errors?.valid">Email is not valid</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="Username" formControlName="password">
+        <input type="password" matInput placeholder="Password" formControlName="password">
         <mat-icon matSuffix>lock</mat-icon>
-        <mat-hint *ngIf="profileForm.controls.password.touched &&
-          profileForm.controls.password.errors?.required">Password is mandatory</mat-hint>
+        <mat-error *ngIf="profileForm.controls.password.touched &&
+          profileForm.controls.password.errors?.required">Password is mandatory</mat-error>
+        <mat-error *ngIf="profileForm.controls.password.touched &&
+          !profileForm.controls.password.errors?.required &&
+          !profileForm.controls.password.errors?.valid">Password is not valid</mat-error>
       </mat-form-field>
     </div>
     <div>
