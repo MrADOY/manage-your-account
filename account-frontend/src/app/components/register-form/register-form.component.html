@@ -1,25 +1,46 @@
-<form [formGroup]="profileForm" (ngSubmit)="valider()">
-
-  <label>
-    Name:
-    <input type="text" formControlName="name">
-  </label>
-
-  <label>
-    Username:
-    <input type="text" formControlName="username">
-  </label>
-
-  <label>
-    Email:
-    <input type="text" formControlName="email">
-  </label>
-
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
-
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-
-</form>
+<div class="container">
+  <form [formGroup]="profileForm" (ngSubmit)="valider()">
+    <div>
+      <h3>Register</h3>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Username" formControlName="name">
+        <mat-icon matSuffix>emoji_people</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.name.touched &&
+          profileForm.controls.name.errors?.required">Name is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput placeholder="Username" formControlName="username">
+        <mat-icon matSuffix>assignment_ind</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.username.touched &&
+          profileForm.controls.username.errors?.required">Username is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="Username" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.email.touched &&
+          profileForm.controls.email.errors?.required">Username is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Username" formControlName="password">
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.password.touched &&
+          profileForm.controls.password.errors?.required">Password is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!profileForm.valid" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

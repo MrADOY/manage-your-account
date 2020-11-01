@@ -1,1 +1,19 @@
+<p>
+  <mat-toolbar color="primary">
+    <span>Manage your accounts</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="!this.authService.isLoggedIn()" routerLink="/signup"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <button *ngIf="!this.authService.isLoggedIn()" routerLink="/login"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>login</mat-icon>
+    </button>
+    <button *ngIf="this.authService.isLoggedIn()"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button *ngIf="this.authService.isLoggedIn()" (click)="this.authService.logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon >power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
 <router-outlet></router-outlet>

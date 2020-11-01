@@ -1,0 +1,10 @@
+mat-hint {
+  color:red !important;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

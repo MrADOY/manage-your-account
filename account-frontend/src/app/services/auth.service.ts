@@ -7,6 +7,7 @@ import { JwtAuthenticationResponseOdt } from '../models/JwtAuthenticationRespons
 import { SignUpOdt } from '../models/SignUpOdt';
 import { tap } from 'rxjs/operators';
 import { UserInfo } from '../models/UserInfo';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
 
   public currentUser$: Subject<UserInfo> = new Subject<UserInfo>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public signin(login: LoginOdt): Observable<JwtAuthenticationResponseOdt> {
     return this.http.post<JwtAuthenticationResponseOdt>(`${environment.urlBackend}/api/auth/signin`, login)
@@ -50,6 +51,7 @@ export class AuthService {
   public logout(): void {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('currentUser');
+      this.router.navigate(['/login']);
   }
 
 }

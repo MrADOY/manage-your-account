@@ -1,15 +1,28 @@
-<form [formGroup]="profileForm" (ngSubmit)="valider()">
-
-  <label>
-    Username:
-    <input type="text" formControlName="username">
-  </label>
-
-  <label>
-    Password:
-    <input type="password" formControlName="password">
-  </label>
-
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-
-</form>
+<div class="container">
+  <form [formGroup]="profileForm" (ngSubmit)="valider()">
+    <div>
+      <h3>Log in</h3>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput placeholder="Username" formControlName="username">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.username.touched &&
+          profileForm.controls.username.errors?.required">Username is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-hint *ngIf="profileForm.controls.password.touched &&
+          profileForm.controls.password.errors?.required">Password is mandatory</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!profileForm.valid" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>
