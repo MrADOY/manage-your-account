@@ -18,13 +18,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { NgxEchartsModule } from 'ngx-echarts';
+import { MatTabsModule } from '@angular/material/tabs';
+import * as echarts from 'echarts';
+import { ChartsComponent } from './components/charts/charts.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
     AuthFormComponent,
     RegisterFormComponent,
-    AccountComponent
+    AccountComponent,
+    ChartsComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +39,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxEchartsModule.forRoot({
+      echarts,
+    }),
     // Material design modules
     MatToolbarModule,
     MatIconModule,
@@ -40,7 +50,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatCardModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTabsModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
