@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import fr.accountbackend.models.User;
+import fr.accountbackend.models.Users;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,7 +43,7 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(User user) {
+    public static UserPrincipal create(Users user) {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
         ).collect(Collectors.toList());

@@ -6,13 +6,14 @@ import fr.accountbackend.models.audit.DateAudit;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
+@Table(uniqueConstraints = {
         @UniqueConstraint(columnNames = {
             "username"
         }),
@@ -20,7 +21,7 @@ import javax.validation.constraints.Size;
             "email"
         })
 })
-public class User extends DateAudit {
+public class Users extends DateAudit {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,13 +51,16 @@ public class User extends DateAudit {
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Roles> roles = new HashSet<>();
 
-    public User() {
+    @OneToMany(mappedBy="users")
+    private List<Accounts> accounts;
+
+    public Users() {
 
     }
 
-    public User(String name, String username, String email, String password) {
+    public Users(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -103,11 +107,21 @@ public class User extends DateAudit {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
+
+
+    public List<Accounts> getAccounts() {
+        return this.accounts;
+    }
+
+    public void setAccounts(List<Accounts> accounts) {
+        this.accounts = accounts;
+    }
+
 }

@@ -20,9 +20,9 @@ import fr.accountbackend.config.security.CurrentUser;
 import fr.accountbackend.config.security.JwtTokenProvider;
 import fr.accountbackend.config.security.UserPrincipal;
 import fr.accountbackend.exception.AppException;
-import fr.accountbackend.models.Role;
+import fr.accountbackend.models.Roles;
 import fr.accountbackend.models.RoleName;
-import fr.accountbackend.models.User;
+import fr.accountbackend.models.Users;
 import fr.accountbackend.odt.ApiResponseOdt;
 import fr.accountbackend.odt.JwtAuthenticationResponseOdt;
 import fr.accountbackend.odt.LoginOdt;
@@ -91,17 +91,17 @@ public class AuthController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
+        Users user = new Users(signUpRequest.getName(), signUpRequest.getUsername(),
                 signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Roles userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
 
-        User result = userRepository.save(user);
+        Users result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")

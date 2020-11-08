@@ -3,7 +3,7 @@ package fr.accountbackend.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import fr.accountbackend.models.User;
+import fr.accountbackend.models.Users;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,14 +12,14 @@ import java.util.Optional;
  * JPA repository to manage user data in database
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Optional<Users> findByEmail(String email);
 
-    Optional<User> findByUsernameOrEmail(String username, String email);
+    Optional<Users> findByUsernameOrEmail(String username, String email);
 
-    List<User> findByIdIn(List<Long> userIds);
+    List<Users> findByIdIn(List<Long> userIds);
 
-    Optional<User> findByUsername(String username);
+    Optional<Users> findByUsername(String username);
 
     Boolean existsByUsername(String username);
 

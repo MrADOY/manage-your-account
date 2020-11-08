@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.accountbackend.models.User;
+import fr.accountbackend.models.Users;
 import fr.accountbackend.repository.UserRepository;
 
 /**
@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String usernameOrEmail)
             throws UsernameNotFoundException {
         // Let people login with either username or email
-        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+        Users user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() -> 
                         new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
         );
@@ -37,7 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     // This method is used by JWTAuthenticationFilter
     @Transactional
     public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(
+        Users user = userRepository.findById(id).orElseThrow(
             () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 

@@ -38,7 +38,8 @@ export class AuthFormComponent implements OnInit {
       this.router.navigate(['/account']);
     }, error => {
       this.openSnackBarError('Username or password incorrect', 'Ok');
-    }, () => {this.showProgressBar = false;});
+      this.showProgressBar = false;
+    }, () => this.showProgressBar = false);
   }
 
   private openSnackBar(message: string): void {
