@@ -8,10 +8,10 @@ export interface TransactionOdt {
 }
 
 export enum TransactionType {
-  APARTMENT,
-  FOOD,
-  OTHER,
-  HOBBIES,
-  INVOICES,
-  INCOME
+  APARTMENT = 'APARTMENT',
+  FOOD= 'FOOD',
+  OTHER = 'OTHER',
+  HOBBIES = 'HOBBIES',
+  INVOICES = 'INVOICES',
+  INCOME = 'INCOME'
 }

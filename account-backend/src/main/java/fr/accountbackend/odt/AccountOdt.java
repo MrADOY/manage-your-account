@@ -4,7 +4,7 @@ public class AccountOdt {
     private int id;
     private float balance;
     private String accountNumber;
-
+    private String name;
 
     public AccountOdt() {
     }
@@ -14,11 +14,21 @@ public class AccountOdt {
         this.accountNumber = accountNumber;
     }
 
-    public AccountOdt(int id, float balance, String accountNumber) {
+    public AccountOdt(int id, float balance, String accountNumber, String name) {
         this.id = id;
         this.balance = balance;
         this.accountNumber = accountNumber;
+        this.name = name;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public float getBalance() {
         return this.balance;

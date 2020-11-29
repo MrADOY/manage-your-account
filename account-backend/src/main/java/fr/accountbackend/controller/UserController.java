@@ -20,7 +20,7 @@ public class UserController {
     @GetMapping("api/user/{idUser}/accounts")
     public List<AccountOdt> getAccountFormIdUser(@PathVariable("idUser") long idUser) {
         return userRepository.findById(idUser).map(u -> {
-            return u.getAccounts().stream().map(c -> new AccountOdt(c.getId(), c.getBalance(), c.getAccountNumber())).collect(Collectors.toList());
+            return u.getAccounts().stream().map(c -> new AccountOdt(c.getId(), c.getBalance(), c.getAccountNumber(), c.getName())).collect(Collectors.toList());
         }).orElse(null);
     }
 }

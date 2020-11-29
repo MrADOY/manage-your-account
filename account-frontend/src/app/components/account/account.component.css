@@ -1,4 +1,9 @@
 #accountheader {
   margin-left: 1rem;
   margin-right: 1rem;
+  width: 100%;
+}
+
+#selectaccount {
+  width: 25%;
 }

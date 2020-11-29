@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { IbanPipe } from './pipes/IbanPipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
     RegisterFormComponent,
     AccountComponent,
     ChartsComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    IbanPipe
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@ public class Accounts {
     private int id;
     private float balance;
     private String accountNumber;
+    private String name;
+
     
     @ManyToOne
     private Users users; 
@@ -28,6 +30,30 @@ public class Accounts {
         this.balance = balance;
         this.accountNumber = accountNumber;
         this.users = user;
+        this.transactions = transactions;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Users getUsers() {
+        return this.users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public List<Transactions> getTransactions() {
+        return this.transactions;
+    }
+
+    public void setTransactions(List<Transactions> transactions) {
         this.transactions = transactions;
     }
 

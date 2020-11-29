@@ -7,8 +7,12 @@ INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `username`, `emai
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES 
 (1, 1);
 
-INSERT INTO `accounts` (`id`, `balance`, `account_number`, `users_id`) VALUES
-(1,	50.0,	'FR7630076020541031340030056',	1);
+INSERT INTO `accounts` (`id`, `balance`, `account_number`, `users_id`, name) VALUES
+(1,	1230.0,	'FR7630076020541031340030056',	1, 'Main account');
+
+INSERT INTO `accounts` (`id`, `balance`, `account_number`, `users_id`, name) VALUES
+(2,	100.0,	'FR7630076020541031340030057',	1, 'Joint bank account');
+
 
 INSERT INTO `transactions` (`id`, `amount`, `from_who`, `transaction_date`, `accounts_id`, `transaction_type`) VALUES
 (1, 20.3, 'LECLERC', '2020-11-10', 1, 'FOOD');

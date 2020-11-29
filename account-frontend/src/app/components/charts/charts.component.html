@@ -1,6 +1,1 @@
-
-<p>{{this.accountSelected}}</p>
-<mat-slide-toggle class="example-margin" [color]="color" (change)="toggleSwitched($event)">
-  Show legend
-</mat-slide-toggle>
-<div echarts [options]="options" class="demo-chart" (chartClick)="onChartEvent($event)" [merge]="updateOptions" ></div>
+<div echarts *ngIf="true" [options]="options" class="demo-chart" (chartClick)="onChartEvent($event)" [merge]="updateOptions" ></div>
