@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { LoginOdt } from './../models/LoginOdt';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
 import { JwtAuthenticationResponseOdt } from '../models/JwtAuthenticationResponseOdt';
 import { SignUpOdt } from '../models/SignUpOdt';
 import { tap } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  public currentUser$: Subject<UserInfo> = new Subject<UserInfo>();
+  private currentUser$: Subject<UserInfo> = new BehaviorSubject<UserInfo>(null);
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -40,12 +40,17 @@ export class AuthService {
     });
   }
 
-  public isLoggedIn(): boolean {
-    return !!localStorage.getItem('accessToken');
+  public getCurrentUser(): Observable<UserInfo> {
+    const userInfo = JSON.parse(localStorage.getItem('currentUser')) as UserInfo;
+    if (userInfo) {
+      return of(userInfo);
+    } else {
+      return this.currentUser$;
+    }
   }
 
-  public getCurrentUser(): UserInfo {
-    return JSON.parse(localStorage.getItem('currentUser')) as UserInfo;
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('accessToken');
   }
 
   public logout(): void {

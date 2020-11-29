@@ -15,9 +15,8 @@ export class UserService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  public getAccountOfUser(): Observable<AccountOdt[]> {
-    const userInfo: UserInfo = this.auth.getCurrentUser();
-    return this.http.get<AccountOdt[]>(`${environment.urlBackend}/api/user/${userInfo.id}/accounts`);
+  public getAccountOfUser(idUser: number): Observable<AccountOdt[]> {
+    return this.http.get<AccountOdt[]>(`${environment.urlBackend}/api/user/${idUser}/accounts`);
   }
 
   public changeAccount(account: AccountOdt): void {

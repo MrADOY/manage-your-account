@@ -1,1 +1,3 @@
-<div echarts *ngIf="true" [options]="options" class="demo-chart" (chartClick)="onChartEvent($event)" [merge]="updateOptions" ></div>
+<mat-progress-bar *ngIf="!traitmentFinished" mode="query"></mat-progress-bar>
+<h1 id="title">Expense chart</h1>
+<div echarts *ngIf="traitmentFinished" [options]="options" class="demo-chart" (chartClick)="onChartEvent($event)" [merge]="updateOptions" ></div>
