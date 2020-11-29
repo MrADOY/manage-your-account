@@ -1,1 +1,57 @@
-<p>transactions works!</p>
+<div style="margin: 4rem;">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Netflix" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- FromWho Column -->
+      <ng-container matColumnDef="fromWho">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> From Who </th>
+        <td mat-cell *matCellDef="let row"> {{row.fromWho}} </td>
+      </ng-container>
+
+      <!-- amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+        <td mat-cell *matCellDef="let row"> {{row.amount}} €</td>
+      </ng-container>
+
+      <!-- date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+      </ng-container>
+
+      <!-- Transaction Type Column -->
+      <ng-container matColumnDef="transactionType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.transactionType}}</td>
+      </ng-container>
+
+      <!-- Transaction Date  Column -->
+      <ng-container matColumnDef="transactionDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.transactionDate}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+

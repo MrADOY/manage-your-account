@@ -1,6 +1,7 @@
 package fr.accountbackend.odt;
 
 public class AccountOdt {
+    private int id;
     private float balance;
     private String accountNumber;
 
@@ -9,6 +10,12 @@ public class AccountOdt {
     }
 
     public AccountOdt(float balance, String accountNumber) {
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+    }
+
+    public AccountOdt(int id, float balance, String accountNumber) {
+        this.id = id;
         this.balance = balance;
         this.accountNumber = accountNumber;
     }
@@ -39,6 +46,15 @@ public class AccountOdt {
         return this;
     }
 
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -46,7 +62,4 @@ public class AccountOdt {
             ", accountNumber='" + getAccountNumber() + "'" +
             "}";
     }
-
-
-    
 }

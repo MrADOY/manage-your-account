@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +27,7 @@ public class AccountController {
         Optional<Accounts> accountFound = accountsRepository.findById(id);
         if (accountFound.isPresent()) {
             return accountFound.get().getTransaction().stream().map(t -> {
-                return new TransactionOdt(t.getAmount(), t.getFrom(), t.getDate(), t.getTransactionType(), t.getDate());
+                return new TransactionOdt(t.getId(), t.getAmount(), t.getFrom(), t.getDate(), t.getTransactionType(), t.getDate());
             }).collect(Collectors.toList());
         }
         return null;

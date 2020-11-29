@@ -4,6 +4,9 @@ INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `name`, `username`, `email`, `password`) VALUES
 (1,	NOW(), NOW(), 'Name Firstname',	'UsernameTest',	'test1@test.com',	'$2a$10$dEDwmfzBAKkmpkaTLRBy1ef5QwLNg3ujkkH5LKLhEXbuA4myzW0Zu');
 
+INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES 
+(1, 1);
+
 INSERT INTO `accounts` (`id`, `balance`, `account_number`, `users_id`) VALUES
 (1,	50.0,	'FR7630076020541031340030056',	1);
 

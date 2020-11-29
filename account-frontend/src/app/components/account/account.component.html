@@ -1,4 +1,26 @@
-<mat-tab-group>
-  <mat-tab label="Visualisation"> <app-charts></app-charts> </mat-tab>
-  <mat-tab label="Transactions"> <app-transactions></app-transactions> </mat-tab>
-</mat-tab-group>
+<div id="accountheader">
+  <h4>Select your account</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Account</mat-label>
+    <mat-select [(value)]="selected" (selectionChange)="onSelectChange($event)">
+      <mat-option *ngFor="let account of accounts" [value]="account">
+        {{account.accountNumber}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="selected" >
+    <mat-tab-group>
+      <mat-tab label="Visualisation">
+        <app-charts></app-charts>
+      </mat-tab>
+      <mat-tab label="Transactions">
+        <app-transactions></app-transactions>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div *ngIf="!selected">
+    <mat-error>Please select an account using list</mat-error>
+  </div>
+</div>

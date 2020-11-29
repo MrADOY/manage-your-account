@@ -1,5 +1,7 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { AccountOdt } from 'src/app/models/AccountOdt';
 
 @Component({
   selector: 'app-charts',
@@ -7,6 +9,8 @@ import { ThemePalette } from '@angular/material/core';
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
+
+  public accountSelected: AccountOdt;
 
   color: ThemePalette = 'primary';
   isChecked = false;
@@ -79,9 +83,12 @@ export class ChartsComponent implements OnInit {
       },
     };
   }
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.accountSelected.subscribe(account => {
+      this.accountSelected = account;
+    });
   }
 
 

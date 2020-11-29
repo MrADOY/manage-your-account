@@ -5,6 +5,7 @@ import java.util.Date;
 import fr.accountbackend.models.TransactionType;
 
 public class TransactionOdt {
+    private int id;
     private float amount;
     private String fromWho;
     private Date date;
@@ -15,12 +16,21 @@ public class TransactionOdt {
     public TransactionOdt() {
     }
 
-    public TransactionOdt(float amount, String fromWho, Date date, TransactionType transactionType, Date transactionDate) {
+    public TransactionOdt(int id, float amount, String fromWho, Date date, TransactionType transactionType, Date transactionDate) {
+        this.id = id;
         this.amount = amount;
         this.fromWho = fromWho;
         this.date = date;
         this.transactionType = transactionType;
         this.transactionDate = transactionDate;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public float getAmount() {
@@ -63,6 +73,11 @@ public class TransactionOdt {
         this.transactionDate = transactionDate;
     }
 
+    public TransactionOdt id(int id) {
+        this.id = id;
+        return this;
+    }
+
     public TransactionOdt amount(float amount) {
         this.amount = amount;
         return this;
@@ -91,12 +106,13 @@ public class TransactionOdt {
     @Override
     public String toString() {
         return "{" +
-            " amount='" + getAmount() + "'" +
+            " id='" + getId() + "'" +
+            ", amount='" + getAmount() + "'" +
             ", fromWho='" + getFromWho() + "'" +
             ", date='" + getDate() + "'" +
             ", transactionType='" + getTransactionType() + "'" +
             ", transactionDate='" + getTransactionDate() + "'" +
             "}";
     }
-    
+
 }

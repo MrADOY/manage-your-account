@@ -24,6 +24,11 @@ import * as echarts from 'echarts';
 import { ChartsComponent } from './components/charts/charts.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +57,11 @@ import { MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSnackBarModule,
     MatProgressBarModule,
     MatTabsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
